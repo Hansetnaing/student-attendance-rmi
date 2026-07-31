@@ -25,19 +25,30 @@ public class Client {
             System.out.print("Total Classes: ");
             int total = sc.nextInt();
 
-            System.out.print("Absented Classes: ");
+            System.out.print("Absent Classes: ");
             int absent = sc.nextInt();
 
             Student student =
-                    service.addAttendance(name, absent, total);
+                    service.addAttendance(name, total, absent);
 
-            System.out.println("--- Attendance Result ---");
+            System.out.println("\n--- Attendance Result ---");
             System.out.println("Name: " + student.getName());
-            System.out.println("Absented: " + student.getAbsentClasses());
-            System.out.println("Total: " + student.getTotalClasses());
-            System.out.printf("Percentage: %.2f%%\n",
+            System.out.println("Total Classes: " + student.getTotalClasses());
+            System.out.println("Absent Classes: " + student.getAbsentClasses());
+
+            System.out.printf("Attendance Percentage: %.2f%%\n",
                     student.getPercentage());
+
             System.out.println("Status: " + student.getStatus());
+
+            System.out.println("\n--- All Students ---");
+
+            for (Student s : service.getAllStudents()) {
+                System.out.printf("%s - %.2f%% - %s\n",
+                        s.getName(),
+                        s.getPercentage(),
+                        s.getStatus());
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

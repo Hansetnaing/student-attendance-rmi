@@ -5,32 +5,37 @@ import java.io.Serializable;
 public class Student implements Serializable {
 
     private String name;
-    private int absentClasses;
     private int totalClasses;
+    private int absentClasses;
 
-    public Student(String name, int attendedClasses, int totalClasses) {
+    public Student(String name, int totalClasses, int absentClasses) {
         this.name = name;
-        this.absentClasses = attendedClasses;
         this.totalClasses = totalClasses;
+        this.absentClasses = absentClasses;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAbsentClasses() {
-        return absentClasses;
-    }
-
     public int getTotalClasses() {
         return totalClasses;
     }
 
+    public int getAbsentClasses() {
+        return absentClasses;
+    }
+
     public double getPercentage() {
-        return ((totalClasses - absentClasses) * 100.0) / totalClasses;
+        if (totalClasses == 0) return 0;
+
+        int attended = totalClasses - absentClasses;
+        return (attended * 100.0) / totalClasses;
     }
 
     public String getStatus() {
-        return getPercentage() >= 75 ? "Eligible for Exam" : "Not Eligible for Exam";
+        return getPercentage() >= 75 ?
+                "Eligible for Exam" :
+                "Not Eligible for Exam";
     }
 }
