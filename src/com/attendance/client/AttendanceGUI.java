@@ -246,6 +246,24 @@ public class AttendanceGUI extends JFrame {
                 return;
             }
 
+            if (total <= 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Total classes must be greater than 0.");
+                return;
+            }
+
+            if (absent < 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Absent classes cannot be negative.");
+                return;
+            }
+
+            if (absent > total) {
+                JOptionPane.showMessageDialog(this,
+                        "Absent classes cannot be greater than total classes.");
+                return;
+            }
+
             Student student =
                     service.addAttendance(name, total, absent);
 
@@ -276,7 +294,7 @@ public class AttendanceGUI extends JFrame {
                     "Please enter valid numbers.");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
-                    ex.getMessage());
+                    "RMI Server doesn't work.");
         }
     }
 
