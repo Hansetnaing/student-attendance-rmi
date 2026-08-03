@@ -32,13 +32,13 @@ public class AttendanceGUI extends JFrame {
                     UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ignored) {}
 
-        setTitle("Student Attendance Eligibility System");
-        setSize(980, 700);
+        setTitle("Student Attendance Eligibility System Using Java RMI");
+        setSize(950, 650);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        getContentPane().setBackground(new Color(189, 189, 201));
+        getContentPane().setBackground(new Color(240, 244, 248));
 
         connectRMI();
         initUI();
@@ -71,32 +71,31 @@ public class AttendanceGUI extends JFrame {
 
         // Main container
         JPanel container = new JPanel();
-        container.setBackground(new Color(24, 24, 27));
+        container.setBackground(new Color(240, 244, 248));
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 
         // Title
         JLabel title = new JLabel(
                 "Student Attendance Eligibility System");
         title.setFont(new Font("Segoe UI", Font.BOLD, 28));
-        title.setForeground(new Color(96, 165, 250));
+        title.setForeground(new Color(30, 64, 175));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(new Color(240, 244, 248));
         titlePanel.setBorder(
-                BorderFactory.createEmptyBorder(30, 0, 20, 0));
+                BorderFactory.createEmptyBorder(20, 0, 10, 0));
         titlePanel.add(title);
 
         container.add(titlePanel);
 
         // Form Card
         JPanel formCard = new JPanel(new GridLayout(3, 2, 12, 12));
-        formCard.setBackground(new Color(39, 39, 42));
+        formCard.setBackground(Color.WHITE);
         formCard.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(
                         new Color(220, 220, 220)),
                 BorderFactory.createEmptyBorder(20, 20, 20, 20)));
-
 
         JLabel lblName = new JLabel("Student Name:");
         lblName.setFont(labelFont);
@@ -116,23 +115,6 @@ public class AttendanceGUI extends JFrame {
         txtAbsent = new JTextField();
         txtAbsent.setFont(fieldFont);
 
-        // Label & Text Field Color
-        lblName.setForeground(Color.WHITE);
-        lblTotal.setForeground(Color.WHITE);
-        lblAbsent.setForeground(Color.WHITE);
-
-        txtName.setBackground(new Color(63, 63, 70));
-        txtName.setForeground(Color.WHITE);
-        txtName.setCaretColor(Color.WHITE);
-
-        txtTotal.setBackground(new Color(63, 63, 70));
-        txtTotal.setForeground(Color.WHITE);
-        txtTotal.setCaretColor(Color.WHITE);
-
-        txtAbsent.setBackground(new Color(63, 63, 70));
-        txtAbsent.setForeground(Color.WHITE);
-        txtAbsent.setCaretColor(Color.WHITE);
-
         formCard.add(lblName);
         formCard.add(txtName);
 
@@ -151,8 +133,8 @@ public class AttendanceGUI extends JFrame {
         // Button
         JButton btnAdd = new JButton("Add Student");
         btnAdd.setPreferredSize(new Dimension(200, 42));
-        btnAdd.setBackground(new Color(17, 24, 39));
-        btnAdd.setForeground(Color.WHITE);
+        btnAdd.setBackground(new Color(37, 99, 235));
+        btnAdd.setForeground(Color.BLACK);
         btnAdd.setFont(new Font("Segoe UI", Font.BOLD, 16));
         btnAdd.setFocusPainted(false);
 
@@ -167,7 +149,7 @@ public class AttendanceGUI extends JFrame {
 
         // Result Card
         JPanel resultCard = new JPanel(new GridLayout(2, 2, 10, 10));
-        resultCard.setBackground(new Color(39, 39, 42));
+        resultCard.setBackground(Color.WHITE);
         resultCard.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(
                         new Color(220, 220, 220)),
@@ -179,10 +161,6 @@ public class AttendanceGUI extends JFrame {
         JLabel lblSta = new JLabel("Exam Status:");
         lblSta.setFont(labelFont);
 
-        lblPer.setForeground(Color.WHITE);
-        lblSta.setForeground(Color.WHITE);
-
-
         lblPercentage = new JLabel("-");
         lblPercentage.setFont(new Font(
                 "Segoe UI", Font.BOLD, 16));
@@ -190,9 +168,6 @@ public class AttendanceGUI extends JFrame {
         lblStatus = new JLabel("-");
         lblStatus.setFont(new Font(
                 "Segoe UI", Font.BOLD, 16));
-
-        lblPercentage.setForeground(Color.WHITE);
-        lblStatus.setForeground(Color.WHITE);
 
         resultCard.add(lblPer);
         resultCard.add(lblPercentage);
@@ -218,22 +193,18 @@ public class AttendanceGUI extends JFrame {
                 }, 0);
 
         table = new JTable(model);
-
         table.setRowHeight(28);
-        table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        table.setFont(new Font(
+                "Segoe UI", Font.PLAIN, 14));
 
         table.getTableHeader().setFont(new Font(
                 "Segoe UI", Font.BOLD, 14));
-        table.getTableHeader().setBackground(new Color(17, 24, 39));
-        table.getTableHeader().setForeground(Color.WHITE);
+        table.getTableHeader().setBackground(
+                new Color(37, 99, 235));
+        table.getTableHeader().setForeground(Color.BLACK);
 
         table.setGridColor(new Color(220, 220, 220));
         table.setSelectionBackground(new Color(191, 219, 254));
-
-        table.setBackground(new Color(24, 24, 27));
-        table.setForeground(Color.WHITE);
-        table.setSelectionForeground(Color.WHITE);
-        table.setSelectionBackground(new Color(59, 130, 246));
 
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(850, 220));
@@ -246,7 +217,7 @@ public class AttendanceGUI extends JFrame {
 
         JPanel tablePanel =
                 new JPanel(new FlowLayout(FlowLayout.CENTER));
-        tablePanel.setBackground(new Color(24, 24, 27));
+        tablePanel.setBackground(new Color(240, 244, 248));
         tablePanel.setBorder(
                 BorderFactory.createEmptyBorder(10, 0, 20, 0));
         tablePanel.add(scrollPane);
@@ -323,7 +294,7 @@ public class AttendanceGUI extends JFrame {
                     "Please enter valid numbers.");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
-                    "Cannot connect to RMI Server.");
+                    "RMI Server doesn't work.");
         }
     }
 
