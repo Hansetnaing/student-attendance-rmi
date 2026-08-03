@@ -33,12 +33,12 @@ public class AttendanceGUI extends JFrame {
         } catch (Exception ignored) {}
 
         setTitle("Student Attendance Eligibility System Using Java RMI");
-        setSize(950, 650);
+        setSize(980, 700);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        getContentPane().setBackground(new Color(240, 244, 248));
+        getContentPane().setBackground(new Color(165, 214, 167));
 
         connectRMI();
         initUI();
@@ -78,7 +78,7 @@ public class AttendanceGUI extends JFrame {
         JLabel title = new JLabel(
                 "Student Attendance Eligibility System");
         title.setFont(new Font("Segoe UI", Font.BOLD, 28));
-        title.setForeground(new Color(30, 64, 175));
+        title.setForeground(new Color(96, 165, 250));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel titlePanel = new JPanel();
@@ -131,7 +131,7 @@ public class AttendanceGUI extends JFrame {
         container.add(formWrapper);
 
         // Button
-        JButton btnAdd = new JButton("Add Student");
+        JButton btnAdd = new JButton("Check Student");
         btnAdd.setPreferredSize(new Dimension(200, 42));
         btnAdd.setBackground(new Color(37, 99, 235));
         btnAdd.setForeground(Color.BLACK);
