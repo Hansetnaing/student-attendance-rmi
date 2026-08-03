@@ -38,7 +38,7 @@ public class AttendanceGUI extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        getContentPane().setBackground(new Color(24, 24, 27));
+        getContentPane().setBackground(new Color(189, 189, 201));
 
         connectRMI();
         initUI();
@@ -181,8 +181,7 @@ public class AttendanceGUI extends JFrame {
 
         lblPer.setForeground(Color.WHITE);
         lblSta.setForeground(Color.WHITE);
-        lblPercentage.setForeground(Color.WHITE);
-        lblStatus.setForeground(Color.WHITE);
+
 
         lblPercentage = new JLabel("-");
         lblPercentage.setFont(new Font(
@@ -191,6 +190,9 @@ public class AttendanceGUI extends JFrame {
         lblStatus = new JLabel("-");
         lblStatus.setFont(new Font(
                 "Segoe UI", Font.BOLD, 16));
+
+        lblPercentage.setForeground(Color.WHITE);
+        lblStatus.setForeground(Color.WHITE);
 
         resultCard.add(lblPer);
         resultCard.add(lblPercentage);
@@ -216,9 +218,9 @@ public class AttendanceGUI extends JFrame {
                 }, 0);
 
         table = new JTable(model);
+
         table.setRowHeight(28);
-        table.setFont(new Font(
-                "Segoe UI", Font.PLAIN, 14));
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
         table.getTableHeader().setFont(new Font(
                 "Segoe UI", Font.BOLD, 14));
