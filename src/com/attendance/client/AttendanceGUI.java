@@ -121,24 +121,37 @@ public class AttendanceGUI extends JFrame {
 
         container.add(formWrapper);
 
-        // Button
+        // Check Button
         JButton btnAdd = new JButton("Check Student");
         btnAdd.setPreferredSize(new Dimension(220, 45));
         btnAdd.setFocusPainted(false);
         btnAdd.setFont(new Font("Segoe UI", Font.BOLD, 16));
 
+        // List Button
+        JButton btnList = new JButton("View Student List");
+        btnList.setPreferredSize(new Dimension(220, 45));
+        btnList.setFocusPainted(false);
+        btnList.setFont(new Font("Segoe UI", Font.BOLD, 16));
+
+        // Button Panel
         JPanel buttonPanel =
-                new JPanel(new FlowLayout(FlowLayout.CENTER));
+                new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         buttonPanel.setBackground(new Color(240, 244, 248));
         buttonPanel.setBorder(
                 BorderFactory.createEmptyBorder(20, 0, 20, 0));
+
+        // Add BOTH buttons
         buttonPanel.add(btnAdd);
+        buttonPanel.add(btnList);
 
         container.add(buttonPanel);
 
         add(container);
 
+        // Button actions
         btnAdd.addActionListener(e -> addStudent());
+        btnList.addActionListener(e -> new StudentListGUI());
+
     }
 
     private void addStudent() {
