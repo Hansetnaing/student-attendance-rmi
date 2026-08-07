@@ -81,8 +81,8 @@ public class AttendanceGUI extends JFrame {
         container.add(titlePanel);
 
         // Form Card
-        JPanel formCard = new JPanel(new GridLayout(3, 2, 12, 12));
-        formCard.setBackground(Color.WHITE);
+        JPanel formCard = new JPanel(new GridLayout(3, 2, 5, 15));
+//        formCard.setBackground(Color.WHITE);
         formCard.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(
                         new Color(220, 220, 220)),
@@ -97,13 +97,13 @@ public class AttendanceGUI extends JFrame {
         JLabel lblAbsent = new JLabel("Absent Classes:");
         lblAbsent.setFont(labelFont);
 
-        txtName = new JTextField(20);
+        txtName = new JTextField(15);
         txtName.setFont(fieldFont);
 
-        txtTotal = new JTextField(20);
+        txtTotal = new JTextField(15);
         txtTotal.setFont(fieldFont);
 
-        txtAbsent = new JTextField(20);
+        txtAbsent = new JTextField(15);
         txtAbsent.setFont(fieldFont);
 
         formCard.add(lblName);
