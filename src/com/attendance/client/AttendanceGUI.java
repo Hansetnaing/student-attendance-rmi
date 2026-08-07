@@ -4,23 +4,15 @@ import com.attendance.common.AttendanceService;
 import com.attendance.common.Student;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.List;
 
 public class AttendanceGUI extends JFrame {
 
     private JTextField txtName;
     private JTextField txtTotal;
     private JTextField txtAbsent;
-
-    private JLabel lblPercentage;
-    private JLabel lblStatus;
-
-    private JTable table;
-    private DefaultTableModel model;
 
     private AttendanceService service;
 
@@ -33,7 +25,7 @@ public class AttendanceGUI extends JFrame {
         } catch (Exception ignored) {}
 
         setTitle("Student Attendance Eligibility System Using Java RMI");
-        setSize(980, 700);
+        setSize(700, 450);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,7 +34,6 @@ public class AttendanceGUI extends JFrame {
 
         connectRMI();
         initUI();
-        loadStudents();
 
         setVisible(true);
     }
@@ -77,7 +68,7 @@ public class AttendanceGUI extends JFrame {
         // Title
         JLabel title = new JLabel(
                 "Student Attendance Eligibility System");
-        title.setFont(new Font("Segoe UI", Font.BOLD, 28));
+        title.setFont(new Font("Segoe UI", Font.BOLD, 26));
         title.setForeground(new Color(96, 165, 250));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -132,97 +123,18 @@ public class AttendanceGUI extends JFrame {
 
         // Button
         JButton btnAdd = new JButton("Check Student");
-        btnAdd.setPreferredSize(new Dimension(200, 42));
-        btnAdd.setBackground(new Color(37, 99, 235));
-        btnAdd.setForeground(Color.BLACK);
-        btnAdd.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        btnAdd.setPreferredSize(new Dimension(220, 45));
         btnAdd.setFocusPainted(false);
+        btnAdd.setFont(new Font("Segoe UI", Font.BOLD, 16));
 
         JPanel buttonPanel =
                 new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setBackground(new Color(240, 244, 248));
         buttonPanel.setBorder(
-                BorderFactory.createEmptyBorder(10, 0, 10, 0));
+                BorderFactory.createEmptyBorder(20, 0, 20, 0));
         buttonPanel.add(btnAdd);
 
         container.add(buttonPanel);
-
-        // Result Card
-        JPanel resultCard = new JPanel(new GridLayout(2, 2, 10, 10));
-        resultCard.setBackground(Color.WHITE);
-        resultCard.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(
-                        new Color(220, 220, 220)),
-                BorderFactory.createEmptyBorder(20, 20, 20, 20)));
-
-        JLabel lblPer = new JLabel("Attendance Percentage:");
-        lblPer.setFont(labelFont);
-
-        JLabel lblSta = new JLabel("Exam Status:");
-        lblSta.setFont(labelFont);
-
-        lblPercentage = new JLabel("-");
-        lblPercentage.setFont(new Font(
-                "Segoe UI", Font.BOLD, 16));
-
-        lblStatus = new JLabel("-");
-        lblStatus.setFont(new Font(
-                "Segoe UI", Font.BOLD, 16));
-
-        resultCard.add(lblPer);
-        resultCard.add(lblPercentage);
-
-        resultCard.add(lblSta);
-        resultCard.add(lblStatus);
-
-        JPanel resultWrapper =
-                new JPanel(new FlowLayout(FlowLayout.CENTER));
-        resultWrapper.setBackground(new Color(240, 244, 248));
-        resultWrapper.add(resultCard);
-
-        container.add(resultWrapper);
-
-        // Table
-        model = new DefaultTableModel(
-                new String[]{
-                        "Name",
-                        "Total",
-                        "Absent",
-                        "Percentage",
-                        "Status"
-                }, 0);
-
-        table = new JTable(model);
-        table.setRowHeight(28);
-        table.setFont(new Font(
-                "Segoe UI", Font.PLAIN, 14));
-
-        table.getTableHeader().setFont(new Font(
-                "Segoe UI", Font.BOLD, 14));
-        table.getTableHeader().setBackground(
-                new Color(37, 99, 235));
-        table.getTableHeader().setForeground(Color.BLACK);
-
-        table.setGridColor(new Color(220, 220, 220));
-        table.setSelectionBackground(new Color(191, 219, 254));
-
-        JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(850, 220));
-        scrollPane.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(
-                        new Color(200, 200, 200)),
-                "Student List",
-                0, 0,
-                new Font("Segoe UI", Font.BOLD, 14)));
-
-        JPanel tablePanel =
-                new JPanel(new FlowLayout(FlowLayout.CENTER));
-        tablePanel.setBackground(new Color(240, 244, 248));
-        tablePanel.setBorder(
-                BorderFactory.createEmptyBorder(10, 0, 20, 0));
-        tablePanel.add(scrollPane);
-
-        container.add(tablePanel);
 
         add(container);
 
@@ -267,22 +179,19 @@ public class AttendanceGUI extends JFrame {
             Student student =
                     service.addAttendance(name, total, absent);
 
-            lblPercentage.setText(
-                    String.format("%.2f %%",
-                            student.getPercentage()));
+            // Show result in message box
+            String message =
+                    "Your Percentage"+
+                            String.format("%.2f %%", student.getPercentage()) +
+                            "\nExam Status: " + student.getStatus();
 
-            lblStatus.setText(student.getStatus());
+            JOptionPane.showMessageDialog(
+                    this,
+                    message,
+                    "Attendance Result",
+                    JOptionPane.INFORMATION_MESSAGE);
 
-            if (student.getPercentage() >= 75) {
-                lblStatus.setForeground(
-                        new Color(22, 163, 74));
-            } else {
-                lblStatus.setForeground(
-                        new Color(220, 38, 38));
-            }
-
-            loadStudents();
-
+            // Clear fields
             txtName.setText("");
             txtTotal.setText("");
             txtAbsent.setText("");
@@ -295,31 +204,6 @@ public class AttendanceGUI extends JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
                     "RMI Server doesn't work.");
-        }
-    }
-
-    private void loadStudents() {
-
-        try {
-            model.setRowCount(0);
-
-            List<Student> students =
-                    service.getAllStudents();
-
-            for (Student s : students) {
-
-                model.addRow(new Object[]{
-                        s.getName(),
-                        s.getTotalClasses(),
-                        s.getAbsentClasses(),
-                        String.format("%.2f %%",
-                                s.getPercentage()),
-                        s.getStatus()
-                });
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
