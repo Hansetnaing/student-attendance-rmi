@@ -97,13 +97,13 @@ public class AttendanceGUI extends JFrame {
         JLabel lblAbsent = new JLabel("Absent Classes:");
         lblAbsent.setFont(labelFont);
 
-        txtName = new JTextField();
+        txtName = new JTextField(20);
         txtName.setFont(fieldFont);
 
-        txtTotal = new JTextField();
+        txtTotal = new JTextField(20);
         txtTotal.setFont(fieldFont);
 
-        txtAbsent = new JTextField();
+        txtAbsent = new JTextField(20);
         txtAbsent.setFont(fieldFont);
 
         formCard.add(lblName);
