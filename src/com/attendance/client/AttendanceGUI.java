@@ -180,15 +180,13 @@ public class AttendanceGUI extends JFrame {
                     service.addAttendance(name, total, absent);
 
             // Show result in message box
-            String message =
-                    "Your Percentage"+
-                            String.format("%.2f %%", student.getPercentage()) +
-                            "\nExam Status: " + student.getStatus();
+            String message =String.format("%.2f %%", student.getPercentage()) +
+                            "\n" + student.getStatus();
 
             JOptionPane.showMessageDialog(
                     this,
                     message,
-                    "Attendance Result",
+                    "Your Percentage Result",
                     JOptionPane.INFORMATION_MESSAGE);
 
             // Clear fields
