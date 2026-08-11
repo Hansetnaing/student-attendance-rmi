@@ -24,7 +24,7 @@ public class AttendanceGUI extends JFrame {
                     UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ignored) {}
 
-        setTitle("Student Attendance Eligibility System Using Java RMI");
+        setTitle("Student Attendance Eligibility System");
         setSize(700, 450);
         setResizable(false);
         setLocationRelativeTo(null);
