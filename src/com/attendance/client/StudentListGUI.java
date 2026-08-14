@@ -58,6 +58,9 @@ public class StudentListGUI extends JFrame {
 
         table = new JTable(model);
 
+        // Make table read-only
+        table.setDefaultEditor(Object.class, null);
+
         table.setRowHeight(28);
         table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 

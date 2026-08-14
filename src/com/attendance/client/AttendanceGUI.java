@@ -24,8 +24,8 @@ public class AttendanceGUI extends JFrame {
                     UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ignored) {}
 
-        setTitle("Student Attendance Eligibility System");
-        setSize(700, 450);
+        setTitle("Student Attendance Eligibility System ");
+        setSize(800, 500);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
