@@ -24,8 +24,8 @@ public class AttendanceGUI extends JFrame {
                     UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ignored) {}
 
-        setTitle("Student Attendance Eligibility System Using Java RMI");
-        setSize(700, 450);
+        setTitle("Student Attendance Eligibility System ");
+        setSize(800, 500);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,24 +121,36 @@ public class AttendanceGUI extends JFrame {
 
         container.add(formWrapper);
 
-        // Button
-        JButton btnAdd = new JButton("Check Student");
+        // Check Button
+        JButton btnAdd = new JButton("Submit");
         btnAdd.setPreferredSize(new Dimension(220, 45));
         btnAdd.setFocusPainted(false);
         btnAdd.setFont(new Font("Segoe UI", Font.BOLD, 16));
 
+        // List Button
+        JButton btnList = new JButton("View Student List");
+        btnList.setPreferredSize(new Dimension(220, 45));
+        btnList.setFocusPainted(false);
+        btnList.setFont(new Font("Segoe UI", Font.BOLD, 16));
+
+        // Button Panel
         JPanel buttonPanel =
-                new JPanel(new FlowLayout(FlowLayout.CENTER));
+                new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         buttonPanel.setBackground(new Color(240, 244, 248));
         buttonPanel.setBorder(
                 BorderFactory.createEmptyBorder(20, 0, 20, 0));
+
+        // Add BOTH buttons
         buttonPanel.add(btnAdd);
+        buttonPanel.add(btnList);
 
         container.add(buttonPanel);
 
         add(container);
 
+        // Button actions
         btnAdd.addActionListener(e -> addStudent());
+
     }
 
     private void addStudent() {
@@ -181,7 +193,7 @@ public class AttendanceGUI extends JFrame {
 
             // Show result in message box
             String message =String.format("%.2f %%", student.getPercentage()) +
-                            "\n" + student.getStatus();
+                    "\n" + student.getStatus();
 
             JOptionPane.showMessageDialog(
                     this,
