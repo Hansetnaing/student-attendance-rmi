@@ -6,9 +6,16 @@ import java.util.List;
 
 public interface AttendanceService extends Remote {
 
-    Student addAttendance(String name,
-                          int totalClasses,
-                          int absentClasses)
+    Student addStudent(String name)
+            throws RemoteException;
+
+    boolean studentExists(String name)
+            throws RemoteException;
+
+    void markAttendance(String name, boolean present)
+            throws RemoteException;
+
+    Student getStudent(String name)
             throws RemoteException;
 
     List<Student> getAllStudents()

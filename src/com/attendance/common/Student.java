@@ -1,41 +1,62 @@
 package com.attendance.common;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Student implements Serializable {
 
     private String name;
-    private int totalClasses;
-    private int absentClasses;
+    private List<Boolean> attendanceRecords;
 
-    public Student(String name, int totalClasses, int absentClasses) {
+    public Student(String name) {
         this.name = name;
-        this.totalClasses = totalClasses;
-        this.absentClasses = absentClasses;
+        this.attendanceRecords = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
+    public List<Boolean> getAttendanceRecords() {
+        return attendanceRecords;
+    }
+
+    public void addAttendance(boolean present) {
+        attendanceRecords.add(present);
+    }
+
     public int getTotalClasses() {
-        return totalClasses;
+        return attendanceRecords.size();
     }
 
     public int getAbsentClasses() {
-        return absentClasses;
+        int absent = 0;
+
+        for (boolean present : attendanceRecords) {
+            if (!present) {
+                absent++;
+            }
+        }
+
+        return absent;
+    }
+
+    public int getPresentClasses() {
+        return getTotalClasses() - getAbsentClasses();
     }
 
     public double getPercentage() {
-        if (totalClasses == 0) return 0;
+        if (getTotalClasses() == 0) {
+            return 0;
+        }
 
-        int attended = totalClasses - absentClasses;
-        return (attended * 100.0) / totalClasses;
+        return (getPresentClasses() * 100.0) / getTotalClasses();
     }
 
     public String getStatus() {
-        return getPercentage() >= 75 ?
-                "Eligible for Exam" :
-                "Not Eligible for Exam";
+        return getPercentage() >= 75
+                ? "Eligible for Exam"
+                : "Not Eligible for Exam";
     }
 }
