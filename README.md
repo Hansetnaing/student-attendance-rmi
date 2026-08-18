@@ -1,11 +1,69 @@
-# Student Attendance Eligibility System Using Java RMI
+# Student Attendance RMI System
 
-This project is a **Student Attendance Eligibility System** developed using **Java RMI (Remote Method Invocation)**. The main purpose of the system is to help tutors manage student attendance and automatically calculate attendance percentages through a client–server architecture.
+A simple **Student Attendance Management System** developed using **Java RMI (Remote Method Invocation)**.
 
-In this system, the tutor enters the student name, total number of classes, and number of absent classes through a graphical user interface (GUI). The client application sends the attendance data to the RMI server. The server stores the student information in an **ArrayList**, calculates the attendance percentage using the formula:
+The system allows a teacher/tutor to manage students and record their daily attendance. Attendance percentage and exam eligibility are calculated automatically.
 
-**Attendance % = ((Total Classes − Absent Classes) / Total Classes) × 100**
+---
 
-The system then checks whether the student has at least **75% attendance**. Students with attendance greater than or equal to 75% are marked **Eligible for Exam**, while students below 75% are marked **Not Eligible for Exam**. The calculated result is returned from the server and displayed in the GUI.
+## 📌 Project Overview
 
-This project demonstrates the concepts of **distributed computing, remote method invocation, client–server communication, object serialization, and Java Swing GUI development**. It is designed as an educational mini-project for university students to understand how Java RMI works in a real-world attendance management scenario.
+This project demonstrates how Java RMI can be used to build a client-server application.
+
+The system has three main parts:
+
+- **Client** – Provides the user interface and sends requests.
+- **Server** – Processes attendance operations and manages student data.
+- **Common** – Contains shared classes and the RMI interface.
+
+The project does **not use a database**. Student data is currently stored in an `ArrayList` on the RMI server.
+
+---
+
+## ✨ Features
+
+### Student Management
+
+- Add a student manually
+- Upload multiple student names from a `.txt` file
+- Prevent duplicate students
+- View all students
+
+### Attendance Management
+
+- Select a student
+- Mark attendance as **Present**
+- Mark attendance as **Absent**
+- Automatically calculate:
+    - Total Classes
+    - Present Classes
+    - Absent Classes
+    - Attendance Percentage
+- Automatically determine exam eligibility
+
+### GUI
+
+The system uses Java Swing with the operating system's native Look & Feel.
+
+The GUI provides:
+
+- Student name input
+- Add Student button
+- Upload Names button
+- Student selection
+- Present / Absent buttons
+- Attendance information
+- Student list window
+
+### RMI Communication
+
+The client communicates with the server using Java RMI.
+
+The main remote operations are:
+
+```java
+addStudent()
+studentExists()
+markAttendance()
+getStudent()
+getAllStudents()
